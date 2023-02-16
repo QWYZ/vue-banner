@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.14/vue.js"></script>
+    <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+    <div id="app">
+        <div class="swiper-container">
+            <div class="left-btn">
+                <button v-on:click="clickLeftBtn" class="btn"><</button>
+            </div>
+            <div class="right-btn">
+                <button v-on:click="clickRightBtn" class="btn">></button>
+            </div>
+
+            <div class="images">
+                <img :src="imgUrl"  />
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                images:['../assets/images/banner1.png','../assets/images/banner2.png','../assets/images/banner3.png','../assets/images/banner4.png'],
+                imgIndexArr:[],
+                index:0,
+            },
+            computed:{
+                imgUrl(){
+                    return this.images[this.index]
+                }
+            },
+            created(){
+                
+                console.log('created1');
+            },
+            mounted(){
+                console.log('mounted');
+
+
+            },
+            methods:{
+                clickLeftBtn(){
+                    if(this.index === 0){
+                        this.index = this.images.length-1
+                    }else{
+                        this.index = this.index-1
+                    }
+                },
+                clickRightBtn(){
+                    if(this.index === this.images.length-1){
+                        this.index = 0
+                    }else{
+                        this.index = this.index+1
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+</html>
